@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class frieBall : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private FireBall _Fireball;
+  
     [SerializeField] private Transform _characterhand;
     [SerializeField] private float _coolDownDelay;
     [SerializeField] private float _animationDelay=0.5f;
@@ -44,7 +45,10 @@ public class frieBall : MonoBehaviour
 
         }
     }
-
+    public float GetCoolDownRatio()
+    {
+        return 1-(_Timer / _coolDownDelay);
+    }
     private IEnumerator SendFireBall(Transform target)
 
     {
