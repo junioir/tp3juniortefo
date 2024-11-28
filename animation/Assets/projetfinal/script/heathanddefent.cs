@@ -9,6 +9,7 @@ public class heathanddefent : MonoBehaviour
    public void ReceiveDamage(int damage)
     {
         _health -= damage;
+
         Debug.Log("health remaning is:" + _health);
     }
 

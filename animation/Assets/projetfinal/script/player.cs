@@ -7,14 +7,17 @@ public class player : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _movementSpeed = 5f;
+
     [SerializeField] private float _stopingDistance = 0.75f;
-    [SerializeField] private float _attackcoolDown = 1.5f;
+//SerializeField] private float _attackcoolDown = 1.5f;
+    [SerializeField] private float _life;
     [SerializeField] private int _damage = 5;
     private Camera _camera;
     private Rigidbody _rigidbody;
     private heathanddefent _Currentenemy;
     private Vector3 _targetposition;
     private bool _attackIsattive;
+
 
     void Start()
     {
@@ -104,6 +107,17 @@ public class player : MonoBehaviour
     public void ResetAttack()
     {
         _animator.SetBool("IsAttacking", false);
+    }
+
+    public void ReceiveDamage(float damage) 
+    {
+        _life-=damage;
+
+        Debug.Log("health remaning is:" + _life);
+    }
+    public float Getlife()
+    {
+        return _life;
     }
 
 }
