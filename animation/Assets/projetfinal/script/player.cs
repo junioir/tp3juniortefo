@@ -86,7 +86,7 @@ public class player : MonoBehaviour
             _animator.SetBool("IsWalking", false);
         }
 
-        if (_attackIsattive && distance <_stopingDistance)
+        if (_attackIsattive && distance <_stopingDistance && _Currentenemy != null)
         {
             attack();
         }
@@ -105,6 +105,7 @@ public class player : MonoBehaviour
     }
 
     public void ResetAttack()
+
     {
         _animator.SetBool("IsAttacking", false);
     }
