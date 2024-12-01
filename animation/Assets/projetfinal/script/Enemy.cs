@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -33,7 +32,7 @@ public class Enemy : MonoBehaviour
         {
             _timer += Time.deltaTime;
             GameObject[] checking;
-            checking = GameObject.FindGameObjectsWithTag("player");
+            checking = GameObject.FindGameObjectsWithTag("Hero");
             if (checking.Length != 0)
             {
                 _player = checking[0].GetComponent<player>();
@@ -43,7 +42,7 @@ public class Enemy : MonoBehaviour
                 if (_distanceToPlayer > _stopingDistance && !_attacking)
                 {
                     _rb.velocity = _direction.normalized * _mouvmentSpeed;
-                    _animator.SetBool("IsWalking", true);
+                    _animator.Play("run");
                 }
                 else if (_distanceToPlayer <= _stopingDistance && !_attacking && _timer > _attackReset)
                 {
@@ -60,14 +59,14 @@ public class Enemy : MonoBehaviour
         {
             _dying = true;
             _rb.velocity = Vector3.zero;
-            _animator.SetBool("die",true);
+            _animator.Play("die");
         }
     }
 
     private IEnumerator AttackDealay()
     {
         _rb.velocity = Vector3.zero;
-        _animator.SetBool("IsAttacking", true);
+        _animator.Play("attack");
         _attacking = true;
         yield return new WaitForSeconds(0.45f);
         _player.ReceiveDamage(_damage);
@@ -89,5 +88,4 @@ public class Enemy : MonoBehaviour
     {
         _meshrenderer.material.color = color;
     }
-} 
-
+}
