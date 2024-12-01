@@ -7,6 +7,9 @@ public class player : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _movementSpeed = 5f;
+    [SerializeField] private AudioClip _WalkSound;
+    [SerializeField] private AudioClip _AttackSound;
+    [SerializeField] private AudioSource _AudioSource;
 
     [SerializeField] private float _stopingDistance = 0.75f;
 //SerializeField] private float _attackcoolDown = 1.5f;
@@ -77,6 +80,7 @@ public class player : MonoBehaviour
             _rigidbody.velocity = _movementSpeed * direction;
 
             _animator.SetBool("IsWalking", true);
+            PlaySound(_WalkSound);
 
         }
         else
@@ -99,7 +103,8 @@ public class player : MonoBehaviour
 
     {
         _animator.SetBool("IsAttacking", true);
-        _attackIsattive=false;
+        PlaySound(_AttackSound);
+        _attackIsattive =false;
         _Currentenemy.ReceiveDamage(_damage);
 
     }
@@ -119,6 +124,14 @@ public class player : MonoBehaviour
     public float Getlife()
     {
         return _life;
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null && _AudioSource != null)
+        {
+            _AudioSource.PlayOneShot(clip);
+        }
     }
 
 }
