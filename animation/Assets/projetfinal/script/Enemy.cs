@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         {
             _timer += Time.deltaTime;
             GameObject[] checking;
-            checking = GameObject.FindGameObjectsWithTag("Hero");
+            checking = GameObject.FindGameObjectsWithTag("Player");
             if (checking.Length != 0)
             {
                 _player = checking[0].GetComponent<player>();
@@ -88,4 +88,6 @@ public class Enemy : MonoBehaviour
     {
         _meshrenderer.material.color = color;
     }
+
+    
 }
