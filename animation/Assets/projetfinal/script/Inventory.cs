@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Inventory : MonoBehaviour
 {
@@ -31,5 +32,10 @@ public class Inventory : MonoBehaviour
         _CountCoinText.text = _CountCoin.ToString();
 
        
+    }
+
+    public static implicit operator Inventory(PlayerHealth v)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -81,12 +81,10 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(_InvincibilityFlashDelay);
         }
     }
-
-    public IEnumerator InvicibiltyDelay()
+  public IEnumerator InvicibiltyDelay()
 
     {
       yield return new WaitForSeconds(_InvincibilityTimeAfterHit);
         _Isinvincible = false;
-
-    }
+     }
 }
