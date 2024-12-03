@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
+    [SerializeField] private int _damageOncollision=5;
     [SerializeField] private float _speed;
     [SerializeField] private Transform[] _waypoints;
     [SerializeField] private MeshRenderer _graphics;
+
    // [SerializeField] private GameObject _gameOverPanel; // Référence au panel de Game Over
    // [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
    // [SerializeField] private AudioClip _Sound;
@@ -100,7 +102,7 @@ public class EnemyBoss : MonoBehaviour
             PlayerHealth playerHealth = other.transform.GetComponent<PlayerHealth>();
             if (playerHealth != null) 
             {
-                playerHealth.TakeDamage(20);
+                playerHealth.TakeDamage(_damageOncollision);
             }
         }
     }
