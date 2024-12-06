@@ -36,6 +36,7 @@ public class Projectile : MonoBehaviour
             if (playerScript != null)
             {
                 playerScript.ReceiveDamage(_damage);
+                PlayerHealth._Instance.TakeDamage(_damage);
             }
 
             Destroy(gameObject);

@@ -50,6 +50,8 @@ public class FireBall : MonoBehaviour
 
             Debug.Log("Explosion done");
         }
+
+
     }
 
     private void Explosion()
@@ -64,6 +66,8 @@ public class FireBall : MonoBehaviour
             {
                 health.ReceiveDamage(_damage);
             }
+
+           
         }
         _hasExplosed = true;
         _Rigidbody.velocity = Vector3.zero;

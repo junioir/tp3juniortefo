@@ -9,7 +9,7 @@ public class HealthPowerUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (PlayerHealth._Instance._CurrentHealth != PlayerHealth._Instance._MaxHeath)
+            if (PlayerHealth._Instance._CurrentHealth != PlayerHealth._Instance._MaxHealth)
             {
                 PlayerHealth._Instance.HealPlayer(_Healthpoint);
                 Destroy(gameObject);

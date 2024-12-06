@@ -13,8 +13,6 @@ public class frieBall : MonoBehaviour
     [SerializeField] private Transform _characterhand;
     [SerializeField] private float _coolDownDelay;
     [SerializeField] private float _animationDelay=0.5f;
-
-
     private float _Timer;
 
     void Start()

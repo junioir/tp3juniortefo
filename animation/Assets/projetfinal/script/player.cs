@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    public Animator _animator;
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private AudioClip _WalkSound;
     [SerializeField] private AudioClip _AttackSound;
@@ -15,6 +16,7 @@ public class player : MonoBehaviour
 //SerializeField] private float _attackcoolDown = 1.5f;
     [SerializeField] private float _life;
     [SerializeField] private int _damage = 5;
+    public static player _Instance;
     private Camera _camera;
     private Rigidbody _rigidbody;
     private heathanddefent _Currentenemy;
@@ -22,6 +24,16 @@ public class player : MonoBehaviour
     private bool _attackIsattive;
 
 
+    private void Awake()
+    {
+        if (_Instance != null)
+        {
+
+            Debug.Log("The is more player movement in the scene");
+            return;
+        }
+        _Instance = this;
+    }
     void Start()
     {
         _camera = Camera.main;

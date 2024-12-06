@@ -5,7 +5,7 @@ using UnityEngine;
 public class GenerateurDistance : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;  
-    [SerializeField] private float _spawnInterval = 3f; 
+    [SerializeField] private float _spawnInterval = 8f; 
 
     private void Start()
     {

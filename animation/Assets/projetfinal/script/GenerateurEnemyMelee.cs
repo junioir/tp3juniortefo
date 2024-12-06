@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GenerateurEnemyMelee : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
+    public EnemyMelee _enemy;
     [SerializeField] private int _enemyCount;
 
     private void Start()
@@ -17,12 +17,8 @@ public class GenerateurEnemyMelee : MonoBehaviour
     }
     private void CreateEnemy(Vector3 position)
     {
-        Enemy enemy = Instantiate(_enemy, position, Quaternion.identity);
-        Color color = GetRandomcolor();
-        enemy.ChangeColor(color);
+        EnemyMelee enemy = Instantiate(_enemy, position, Quaternion.identity);
+        
     }
-    private Color GetRandomcolor()
-    {
-        return new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-    }
+   
 }
