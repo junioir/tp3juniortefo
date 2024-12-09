@@ -15,7 +15,7 @@ public class heathanddefent : MonoBehaviour
 
         if (_health==0)
         {
-            //   animator.SetBool("die", true);
+            // animator.SetBool("die", true);
             Debug.Log("enemy mort");
         }
 

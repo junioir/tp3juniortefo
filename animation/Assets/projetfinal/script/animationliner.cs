@@ -6,7 +6,7 @@ public class animationliner : MonoBehaviour
 {
   public  void ResetAttack()
     {
-       GetComponentInParent<player>().ResetAttack();
+       //GetComponentInParent<player>().ResetAttack();
 
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RangedEnemy : MonoBehaviour
 {
+    [SerializeField] private AnimationController _controller;
     [SerializeField] private float _movementSpeed = 3f; // Vitesse de déplacement de l'ennemi
     [SerializeField] private float _attackRange = 10f; // Portée d'attaque
     [SerializeField] private float _attackCooldown = 2f; // Temps entre chaque attaque

@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyMelee : MonoBehaviour
 {
     private const bool V = false;
+    [SerializeField] private AnimationController _controller;
     [SerializeField] private int _damageOnCollision = 5;
     [SerializeField] private float _speed = 2f;
     [SerializeField] private float _attackRange = 2f;
-    // [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     private Transform _player; // Référence au joueur
-    // private bool _isAttacking;
+     private bool _isAttacking;
 
     void Start()
     {
@@ -32,17 +33,22 @@ public class EnemyMelee : MonoBehaviour
 
         if (distanceToPlayer <= _attackRange)
         {
+           
             // Mode attaque
-            //  _isAttacking = true;
-            //  _animator.SetBool("IsWalking", false);
-            // _animator.SetBool("IsAttacking", true);
+             _isAttacking = true;
+            _controller.SetIsNotWalking();
+            _controller.SetIsAttacking();
+             //_animator.SetBool("IsWalking", false);
+             //_animator.SetBool("IsAttacking", true);
             AttackPlayer();
         }
         else
         {
             // Mode suivi
-            //  _isAttacking = V;
-            //   _animator.SetBool("IsAttacking", false);
+             _isAttacking = V;
+            //
+            _controller.SetIsWalking();
+            //_animator.SetBool("IsAttacking", false);
             FollowPlayer();
         }
     }
@@ -84,5 +90,11 @@ public class EnemyMelee : MonoBehaviour
     internal void ChangeColor(Color color)
     {
         throw new NotImplementedException();
+    }
+
+    public void ResetAttack()
+
+    {
+        _animator.SetBool("IsAttacking", false);
     }
 }

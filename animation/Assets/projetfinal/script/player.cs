@@ -7,6 +7,7 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     public Animator _animator;
+    [SerializeField] private AnimationController _controller;
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private AudioClip _WalkSound;
     [SerializeField] private AudioClip _AttackSound;
@@ -91,7 +92,7 @@ public class player : MonoBehaviour
 
             _rigidbody.velocity = _movementSpeed * direction;
 
-            _animator.SetBool("IsWalking", true);
+            _controller.SetIsWalking();   
             PlaySound(_WalkSound);
 
         }
@@ -99,7 +100,8 @@ public class player : MonoBehaviour
         {
             _rigidbody.velocity = Vector3.zero;
 
-            _animator.SetBool("IsWalking", false);
+            //_animator.SetBool("IsWalking", false);
+            _controller.SetIsNotWalking();
         }
 
         if (_attackIsattive && distance <_stopingDistance && _Currentenemy != null)
@@ -114,18 +116,15 @@ public class player : MonoBehaviour
         public void attack()
 
     {
-        _animator.SetBool("IsAttacking", true);
+        //_animator.SetBool("IsAttacking", true);
+        _controller.SetIsAttacking();
         PlaySound(_AttackSound);
         _attackIsattive =false;
         _Currentenemy.ReceiveDamage(_damage);
 
     }
 
-    public void ResetAttack()
 
-    {
-        _animator.SetBool("IsAttacking", false);
-    }
 
     public void ReceiveDamage(float damage) 
     {
