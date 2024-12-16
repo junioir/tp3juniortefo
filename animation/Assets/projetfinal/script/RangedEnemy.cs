@@ -6,9 +6,6 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private AnimationController _controller;
-   // [SerializeField] private Animator _animator;
-   // [SerializeField] private AudioClip _WalkSound;
-   // [SerializeField] private AudioClip _AttackSound;
     [SerializeField] private AudioSource _AudioSource;
     [SerializeField] private float _movementSpeed = 3f;
     [SerializeField] private float _attackRange = 10f;
@@ -81,11 +78,5 @@ public class RangedEnemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-  /*  private void PlaySound(AudioClip clip)
-    {
-        if (clip != null && _AudioSource != null)
-        {
-            _AudioSource.PlayOneShot(clip);
-        }
-    }*/
+  
 }
