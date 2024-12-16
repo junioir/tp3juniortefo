@@ -5,12 +5,7 @@ using UnityEngine;
 public class PickupObject : MonoBehaviour
 {
     [SerializeField] private AudioClip _Sound;
-
     [SerializeField] private AudioSource _Audiosource;
-
-
-
-
     private void OnTriggerEnter(Collider collision)
 
     {

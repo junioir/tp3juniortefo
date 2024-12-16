@@ -7,14 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] private GameObject _GameOverUi;
-
     public static GameOver _Instance;
-
     private void Awake()
     {
         if (_Instance != null)
         {
-
             Debug.Log("The is more  instance Gameover in the scene");
             return;
         }

@@ -1,26 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
+using UnityEngine;
 public class EnemyBoss : MonoBehaviour
 {
-    [SerializeField] private int _damageOncollision=5;
-    [SerializeField] private float _speed;
+    [SerializeField] private AnimationController _controller;
+    [SerializeField] private Animator _animator;
     [SerializeField] private Transform[] _waypoints;
     [SerializeField] private MeshRenderer _graphics;
-
-   // [SerializeField] private GameObject _gameOverPanel; // Référence au panel de Game Over
-   // [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
-   // [SerializeField] private AudioClip _Sound;
-   // [SerializeField] private AudioClip _AudioClipdefeat;
-   // [SerializeField] private AudioSource _Audiosource;
+   // [SerializeField] private int _damageOncollision = 15;
+    [SerializeField] private float _speed;
 
     private Transform _target;
     private int _despoint;
-
-
 
     void Start()
     {
@@ -32,11 +26,7 @@ public class EnemyBoss : MonoBehaviour
         {
             Debug.LogError("Aucun waypoint assigné !");
         }
-
-        // _gameOverPanel.SetActive(false);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (_target == null) return;
@@ -46,6 +36,7 @@ public class EnemyBoss : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _target.position) < 0.3f)
         {
+            _controller.SetIsWalking();
             _despoint = (_despoint + 1) % _waypoints.Length;
             _target = _waypoints[_despoint];
 
@@ -53,58 +44,8 @@ public class EnemyBoss : MonoBehaviour
             Vector3 directionToTarget = _target.position - transform.position;
             if (directionToTarget != Vector3.zero)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-                transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+                _controller.SetIsAttacking();
             }
         }
     }
-    /* private void OnTriggerEnter(Collider collision)
-     {
-
-         if (collision.CompareTag("Player"))
-         {
-             AudioSource.PlayClipAtPoint(_Sound, transform.position);
-
-             Destroy(collision.gameObject);
-
-             ShowGameOver();
-         }
-     }*/
-    /* private void ShowGameOver()
-     {
-         _gameOverPanel.SetActive(true);
-
-         _textMeshProUGUI.text = "Game Over";
-
-         AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
-
-         foreach (AudioSource audioSource in allAudioSources)
-         {
-             audioSource.Stop();
-         }
-
-         AudioSource.PlayClipAtPoint(_AudioClipdefeat, transform.position);
-     }
-    */
-   /* private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Player"));
-        {
-            PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(20);
-        }
-    }*/
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerHealth playerHealth = other.transform.GetComponent<PlayerHealth>();
-            if (playerHealth != null) 
-            {
-                playerHealth.TakeDamage(_damageOncollision);
-            }
-        }
-    }
-
 }

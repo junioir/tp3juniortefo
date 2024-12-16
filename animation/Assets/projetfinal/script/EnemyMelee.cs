@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class EnemyMelee : MonoBehaviour
 {
-    private const bool V = false;
     [SerializeField] private AnimationController _controller;
-    [SerializeField] private int _damageOnCollision = 5;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private int _damageOnCollision = 2;
     [SerializeField] private float _speed = 2f;
     [SerializeField] private float _attackRange = 2f;
-    [SerializeField] private Animator _animator;
 
-    private Transform _player; // Référence au joueur
-     private bool _isAttacking;
+    private Transform _player;
+    //private bool _isAttacking;
+    private const bool V = false;
 
     void Start()
     {
-        // Trouver le joueur par son tag
         _player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         if (_player == null)
@@ -33,33 +32,25 @@ public class EnemyMelee : MonoBehaviour
 
         if (distanceToPlayer <= _attackRange)
         {
-           
-            // Mode attaque
-             _isAttacking = true;
+            //_isAttacking = true;
             _controller.SetIsNotWalking();
             _controller.SetIsAttacking();
-             //_animator.SetBool("IsWalking", false);
-             //_animator.SetBool("IsAttacking", true);
+           // PlaySound(_AttackSound);
             AttackPlayer();
         }
         else
         {
-            // Mode suivi
-             _isAttacking = V;
-            //
+            //_isAttacking = V;
             _controller.SetIsWalking();
-            //_animator.SetBool("IsAttacking", false);
+           // PlaySound(_WalkSound);
             FollowPlayer();
         }
     }
 
     private void FollowPlayer()
     {
-        // _animator.SetBool("IsWalking", true);
-
         Vector3 direction = (_player.position - transform.position).normalized;
         transform.Translate(direction * _speed * Time.deltaTime, Space.World);
-
         // Orienter l'ennemi vers le joueur
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
@@ -74,7 +65,6 @@ public class EnemyMelee : MonoBehaviour
             playerHealth.TakeDamage(_damageOnCollision);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -86,15 +76,14 @@ public class EnemyMelee : MonoBehaviour
             }
         }
     }
-
     internal void ChangeColor(Color color)
     {
         throw new NotImplementedException();
     }
-
     public void ResetAttack()
 
     {
         _animator.SetBool("IsAttacking", false);
     }
+   
 }

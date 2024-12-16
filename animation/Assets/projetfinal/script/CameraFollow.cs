@@ -5,12 +5,10 @@ using static UnityEngine.UI.GridLayoutGroup;
 
 public class CameraFollow : MonoBehaviour
 {
-
     [SerializeField] private Transform _camera;
     [SerializeField] private Transform _player;
-
-    private Vector3 _cornerA = new Vector3(-7f, 22f, -23f);
-    private Vector3 _cornerB = new Vector3(-13f, 22f, -49f);
+    private Vector3 _cornerA = new Vector3(-7f, 3f, -23f);
+    private Vector3 _cornerB = new Vector3(-13f, 23f, -49f);
     private Vector3 _offset;
     private Vector3 _controlPosition;
 

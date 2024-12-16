@@ -8,19 +8,10 @@ public class frieBall : MonoBehaviour
     [SerializeField] private FireBall _Fireball;
     [SerializeField] private AudioClip _PowerSound;
     [SerializeField] private AudioSource _AudioSource;
-
-
     [SerializeField] private Transform _characterhand;
     [SerializeField] private float _coolDownDelay;
-    [SerializeField] private float _animationDelay=0.5f;
+    [SerializeField] private float _animationDelay = 0.5f;
     private float _Timer;
-
-    void Start()
-    {
-
-    }
-
-
     void Update()
     {
         _Timer += Time.deltaTime;
@@ -48,7 +39,7 @@ public class frieBall : MonoBehaviour
     }
     public float GetCoolDownRatio()
     {
-        return 1-(_Timer / _coolDownDelay);
+        return 1 - (_Timer / _coolDownDelay);
     }
     private IEnumerator SendFireBall(Transform target)
 

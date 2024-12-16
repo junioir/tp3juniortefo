@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TriggerZoneMessage : MonoBehaviour
 {
-    [SerializeField] private GameObject messagePanel; // Le panel contenant le message
-    [SerializeField] private float messageDuration = 2f; // Durée pendant laquelle le message reste affiché
+    [SerializeField] private GameObject messagePanel;
+    [SerializeField] private float messageDuration = 2f;
 
-    private bool hasTriggered = false; // Indique si le joueur a déjà traversé la zone
+    private bool hasTriggered = false;
 
     private void Start()
     {
-        // Assurez-vous que le panneau est désactivé au démarrage
+
         if (messagePanel != null)
         {
             messagePanel.SetActive(false);
@@ -36,16 +36,15 @@ public class TriggerZoneMessage : MonoBehaviour
     {
         if (messagePanel != null)
         {
-            messagePanel.SetActive(true); // Active le panneau
-            Invoke(nameof(HideMessage), messageDuration); // Programme la désactivation après la durée
+            messagePanel.SetActive(true);
+            Invoke(nameof(HideMessage), messageDuration);
         }
     }
-
     private void HideMessage()
     {
         if (messagePanel != null)
         {
-            messagePanel.SetActive(false); // Désactive le panneau
+            messagePanel.SetActive(false);
         }
     }
 }

@@ -8,10 +8,7 @@ public class SkillDisplaying : MonoBehaviour
 {
     [SerializeField] private Image _skillCoolDown;
     [SerializeField] private frieBall _fireBall;
-   
-
-    // Update is called once per frame
-    void Update()
+   void Update()
     {
         _skillCoolDown.fillAmount = _fireBall.GetCoolDownRatio();
     }

@@ -3,14 +3,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 15f; // Vitesse du projectile
-    private int _damage;
     private Vector3 _target;
+    private int _damage;
+
 
     public void SetDamage(int damage)
     {
         _damage = damage;
     }
-
     public void SetTarget(Vector3 target)
     {
         _target = target;
@@ -18,16 +18,12 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        // Déplacement du projectile vers la cible
         transform.position = Vector3.MoveTowards(transform.position, _target, _speed * Time.deltaTime);
-
-        // Détruire le projectile lorsqu'il atteint la cible
         if (Vector3.Distance(transform.position, _target) < 0.1f)
         {
             Destroy(gameObject);
         }
     }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

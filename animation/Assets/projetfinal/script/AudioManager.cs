@@ -5,7 +5,6 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _Playlist;
-
     [SerializeField] private AudioSource _Audiosource;
     private int _MusicIndex;
     void Start()
@@ -27,8 +26,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayNextSong()
     {
-
-        _MusicIndex = (_MusicIndex + 1) % _Playlist.Length;
+      _MusicIndex = (_MusicIndex + 1) % _Playlist.Length;
         _Audiosource.clip = _Playlist[_MusicIndex];
         _Audiosource.Play();
     }

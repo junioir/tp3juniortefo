@@ -5,9 +5,7 @@ using UnityEngine;
 public class InstantiateEnemy : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-
     [SerializeField] private int _enemyCount;
-
     private void Start()
     {
         for (int i = 0; i < _enemyCount; i++)

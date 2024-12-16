@@ -4,18 +4,17 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static PlayerHealth _Instance;
     public int _MaxHealth = 100;
     public int _CurrentHealth;
-    public static PlayerHealth _Instance;
-
-    [SerializeField] private float _InvincibilityFlashDelay = 0.2f;
-    [SerializeField] private float _InvincibilityTimeAfterHit = 3f;
-    [SerializeField] private bool _IsInvincible = false;
 
     [SerializeField] private HealthBar _HealthBar;
     [SerializeField] private MeshRenderer _Graphics;
-    [SerializeField] private Image _InvincibilityIcon; // Image UI pour l'icône d'invincibilité
-
+    [SerializeField] private Image _InvincibilityIcon;
+    [SerializeField] private GameObject _VxBouclier;
+    [SerializeField] private float _InvincibilityFlashDelay = 0.2f;
+    [SerializeField] private float _InvincibilityTimeAfterHit = 3f;
+    [SerializeField] private bool _IsInvincible = false;
     private void Awake()
     {
         if (_Instance != null)
@@ -45,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) // Activer manuellement l'invincibilité
         {
             ActivateInvincibility();
+            _VxBouclier.SetActive(true);
         }
     }
 
@@ -75,10 +75,9 @@ public class PlayerHealth : MonoBehaviour
                 return;
             }
 
-            ActivateInvincibility(); // Déclenche l'invincibilité après avoir subi des dégâts
+            // ActivateInvincibility(); // Déclenche l'invincibilité après avoir subi des dégâts
         }
     }
-
     public void ActivateInvincibility()
     {
         if (!_IsInvincible)
@@ -88,7 +87,6 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(InvincibilityIconUpdate());
         }
     }
-
     private IEnumerator Invincibility()
     {
         if (_Graphics == null)
@@ -132,12 +130,12 @@ public class PlayerHealth : MonoBehaviour
         _InvincibilityIcon.fillAmount = 0; // L'icône est vide à la fin de l'invincibilité
         _IsInvincible = false;
     }
-
     private void Die()
     {
         Debug.Log("Le joueur a perdu.");
         player._Instance.enabled = false;
         player._Instance._animator.SetBool("die", true);
+       
         GameOver._Instance.OnplayerDeath();
     }
 }

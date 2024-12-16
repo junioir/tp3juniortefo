@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class heathanddefent : MonoBehaviour
 {
-    [SerializeField] private int _health = 100;
-    //[SerializeField] private Animator animator;
-
+    [SerializeField] private GameObject _enemy;
+    [SerializeField] private int _health = 20;
+    [SerializeField] private AnimationController _controller;
+    //[SerializeField] private Animator _animator;
     public void ReceiveDamage(int damage)
     {
         _health -= damage;
-       
+
         Debug.Log("health remaning is:" + _health);
 
-        if (_health==0)
+        if (_health == 0)
         {
-            // animator.SetBool("die", true);
+            _controller.SetIsDying();
+            Destroy(gameObject);
+            // _animator.SetBool("die", true);
             Debug.Log("enemy mort");
         }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GenerateurEnemyMelee : MonoBehaviour
 {
-    public EnemyMelee _enemy;
     [SerializeField] private int _enemyCount;
+    public EnemyMelee _enemy;
 
     private void Start()
     {
